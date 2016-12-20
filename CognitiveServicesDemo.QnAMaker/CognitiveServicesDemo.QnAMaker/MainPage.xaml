@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CognitiveServicesDemo.QnAMaker"
+             x:Class="CognitiveServicesDemo.QnAMaker.MainPage">
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Entry x:Name="EntryQuestion" Text="" />
+        
+        <!--<Editor x:Name="editorQuestion"  TextColor="Black"  />-->
+        
+        <Button Command="{Binding MakeQuestionCommand}"
+                CommandParameter="{Binding Source={x:Reference EntryQuestion}, Path=Text}"
+                Text="Preguntar" 
+                Grid.Row="1"/>
+
+        <Label Text="{Binding Answer}" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" 
+               FontSize="Large" 
+               Grid.Row="2" Margin="10" />
+
+        <ActivityIndicator x:Name="Indicator" 
+                           Color="Red" 
+                           IsRunning="{Binding IsBusy}" 
+                           Grid.Row="2" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"/>
+
+        <Label Text="{Binding Score}" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" 
+               FontSize="Large" 
+               Grid.Row="3"/>
+    </Grid>
+
+
+</ContentPage>

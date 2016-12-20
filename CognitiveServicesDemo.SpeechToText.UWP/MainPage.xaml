@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="CognitiveServicesDemo.SpeechToText.UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CognitiveServicesDemo.SpeechToText.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.BottomAppBar>
+        <AppBar IsOpen="True" IsSticky="True">
+            <StackPanel Orientation="Horizontal">
+                <AppBarButton x:Name="btnStartRecord" Label="Iniciar Grabacion" Icon="Microphone" Click="btnStartRecord_Click"></AppBarButton>
+                <AppBarButton x:Name="btnStopRecord" Label="Detener Grabacion" Icon="Stop" IsEnabled="False" Click="btnStopRecord_Click"></AppBarButton>
+            </StackPanel>
+        </AppBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="150" />
+        </Grid.RowDefinitions>
+        <TextBox x:Name="TextBoxResult" AcceptsReturn="True" TextWrapping="Wrap" Grid.Row="0" Margin="20,50,20,20"></TextBox>
+        <ProgressRing x:Name="ProgressRing" IsActive="False" Margin="5" Grid.Row="1"></ProgressRing>
+
+    </Grid>
+</Page>
