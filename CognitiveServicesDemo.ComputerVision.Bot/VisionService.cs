@@ -35,8 +35,8 @@ namespace CognitiveServicesDemo.ComputerVision.Bot
             string message = result?.Description?.Captions.FirstOrDefault()?.Text;
 
             return string.IsNullOrEmpty(message) ?
-                        "No puedo encontrar una descripcion para esta imagen." :
-                        "Te lo dire en ingles! I think it's " + message;
+                        "You got me! I can't find a description for this image." :
+                        "I think it's " + message;
         }
     }
 }

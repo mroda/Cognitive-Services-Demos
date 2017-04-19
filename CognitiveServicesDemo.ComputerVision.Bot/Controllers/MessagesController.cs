@@ -35,13 +35,13 @@ namespace CognitiveServicesDemo.ComputerVision.Bot
                 }
                 catch (ArgumentException e)
                 {
-                    message = "Me enviaste una foto?. Intenta enviarme una foto.";
+                    message = "You didn't send me a picture, did you?. Please try to send me a photo.";
 
                     Trace.TraceError(e.ToString());
                 }
                 catch (Exception e)
                 {
-                    message = "Oops! Algo anduvo mal. Intenta de nuevo mas tarde.";
+                    message = "Oops! Something went wrong. Try again later please.";
 
                     Trace.TraceError(e.ToString());
                 }
@@ -76,7 +76,7 @@ namespace CognitiveServicesDemo.ComputerVision.Bot
                     var connector = new ConnectorClient(new Uri(message.ServiceUrl));
 
                     var response = message.CreateReply();
-                    response.Text = "Hola yo soy un robot e intentare entender el contenido de cualquier foto que me envies.";
+                    response.Text = "Hi, I'm a bot and I will do my best to try to describe any photo you send me.";
 
                     await connector.Conversations.ReplyToActivityAsync(response);
                 }
@@ -108,9 +108,8 @@ namespace CognitiveServicesDemo.ComputerVision.Bot
                     return await this.captionService.GetCaptionAsync(stream);
                 }
             }
-
-            string url;
-            if (TryParseAnchorTag(activity.Text, out url))
+            
+            if (TryParseAnchorTag(activity.Text, out string url))
             {
                 return await this.captionService.GetCaptionAsync(url);
             }
@@ -120,7 +119,7 @@ namespace CognitiveServicesDemo.ComputerVision.Bot
                 return await this.captionService.GetCaptionAsync(activity.Text);
             }
             
-            throw new ArgumentException("El activity no contiene una imagen adjunta valilda.");
+            throw new ArgumentException("The Activity not contain a valid attached image.");
         }
 
         private static async Task<Stream> GetImageStream(ConnectorClient connector, Attachment imageAttachment)
